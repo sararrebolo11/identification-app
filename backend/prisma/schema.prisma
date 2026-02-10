@@ -1,0 +1,81 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum DocumentType {
+  CARTAO_CIDADAO
+  CARTA_CONDUCAO
+  TITULO_RESIDENCIA
+  PASSAPORTE
+}
+
+model User {
+  id                  String     @id @default(uuid())
+  email               String     @unique
+  passwordHash        String
+  role                Role       @default(USER)
+  createdAt           DateTime   @default(now())
+  resetTokenHash      String?
+  resetTokenExpiresAt DateTime?
+  persons             Person[]
+  documents           Document[]
+}
+
+model Person {
+  id          String     @id @default(uuid())
+  fullName    String
+  dateOfBirth DateTime?
+  phone       String?
+  cc          String?
+  address     String?
+  postalCode  String?
+  nif         String?
+  notes       String?
+  documents   Document[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ownerId String
+  owner   User   @relation(fields: [ownerId], references: [id])
+}
+
+model Document {
+  id             String       @id @default(uuid())
+  type           DocumentType
+  documentNumber String
+  dateOfBirth    DateTime?
+
+  // 🔹 Campos específicos
+  nationality String? // Cartão de cidadão
+  nif         String? // Cartão de cidadão
+
+  drivingCategories String? // Carta de condução (ex: "B,B1")
+
+  residenceType String? // Título de residência
+
+  placeOfBirth String? // Passaporte
+
+  personId String
+  person   Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  ownerId String
+  owner   User   @relation(fields: [ownerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([ownerId, type, documentNumber])
+  @@index([documentNumber])
+  @@index([type])
+  @@index([ownerId])
+}

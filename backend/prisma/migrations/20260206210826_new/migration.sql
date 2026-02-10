@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Document" ALTER COLUMN "country" DROP NOT NULL,
+ALTER COLUMN "issuedAt" DROP NOT NULL;

@@ -1,0 +1,87 @@
+.profile-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6f8;
+}
+
+.profile-card {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.profile-card h1 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.profile-info {
+  margin-bottom: 1rem;
+}
+
+.profile-info p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.4rem 0;
+  color: #333;
+}
+
+.profile-info span {
+  font-weight: 600;
+  color: #666;
+}
+
+.profile-card hr {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+.profile-card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.profile-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.profile-card input {
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.profile-card input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.profile-card button {
+  margin-top: 2rem;
+  padding: 0.65rem;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-card button:hover {
+  background: #4338ca;
+}
+
+.profile-message {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}

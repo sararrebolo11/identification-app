@@ -1,0 +1,276 @@
+:root {
+  --bg-main: #0b1c2d;
+  --bg-card: #102e4a;
+  --blue-glow: #00b4ff;
+
+  --text-main: #e6f0fa;
+  --text-muted: #bfd3e6;
+
+  --gold: #f5c542;
+  --gold-soft: #ffd966;
+}
+
+/* Fundo */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(0, 180, 255, 0.15),
+      transparent 60%
+    ),
+    var(--bg-main);
+
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--text-main);
+}
+
+/* Card */
+.login-card {
+  width: 360px;
+  padding: 48px 32px 32px;
+  background: linear-gradient(
+    180deg,
+    #123a5a,
+    var(--bg-card)
+  );
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 20px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+/* Logo / avatar */
+.login-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 180, 255, 0.25),
+    transparent 70%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0, 180, 255, 0.6));
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    padding-top: 72px;
+  }
+
+  .login-avatar {
+    width: 240px;
+    height: 240px;
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .login-avatar img {
+    transform: scale(1.35);
+  }
+}
+
+/* Campos */
+.login-field {
+  display: flex;
+  align-items: center;
+  background: #0b2238;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-top: 22px;
+  padding: 10px 12px;
+}
+
+.login-field .icon {
+  margin-right: 10px;
+  color: var(--gold);
+}
+
+.login-field input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--text-main);
+  font-size: 14px;
+}
+
+.login-field input::placeholder {
+  color: var(--text-muted);
+}
+
+.toggle-visibility {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-remember {
+  margin: 0.8rem 0;
+}
+
+.remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.remember input {
+  margin: 0;
+}
+
+.login-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+/* Botão */
+.login-button {
+  margin-top: 26px;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+
+  background: linear-gradient(
+    180deg,
+    #00b4ff,
+    #008fd1
+  );
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  box-shadow:
+    0 0 12px rgba(0, 180, 255, 0.6);
+}
+
+.login-button:hover {
+  box-shadow:
+    0 0 18px rgba(0, 180, 255, 0.9);
+}
+
+/* checkbox + texto */
+.login-remember {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.8rem 0;
+}
+
+.remember span {
+  white-space: nowrap;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.remember input[type="checkbox"] {
+  margin: 0;
+  width: auto;
+}
+
+.login-footer a {
+  color: inherit;  
+  text-decoration: none; 
+  font-size: 0.8rem;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* =======================
+   MOBILE LOGIN
+   ======================= */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 360px;
+    padding: 40px 20px 24px;
+  }
+
+  .login-avatar {
+    width: 72px;
+    height: 72px;
+    top: -36px;
+  }
+
+  .login-avatar img {
+    max-width: 52px;
+  }
+
+  .login-field {
+    padding: 12px;
+    margin-top: 18px;
+  }
+
+  .login-field input {
+    font-size: 16px; /* 👈 evita zoom no iOS */
+  }
+
+  .login-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .login-actions .left,
+  .login-actions .right {
+    justify-content: center;
+  }
+
+  .login-actions a {
+    text-align: center;
+  }
+
+  .login-button {
+    padding: 14px;
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 600px) {
+  .login-avatar {
+    display: none;
+  }
+}
