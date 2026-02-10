@@ -1,5 +1,10 @@
 import ExcelJS from "exceljs";
+import type { Prisma } from "@prisma/client";
 import { prisma } from "../../prisma";
+
+type PersonWithDocuments = Prisma.PersonGetPayload<{
+  include: { documents: true };
+}>;
 
 export async function exportPersonsToExcel(ownerId: string) {
   const persons = await prisma.person.findMany({
@@ -26,40 +31,41 @@ export async function exportPersonsToExcel(ownerId: string) {
     { header: "Observações", key: "notes", width: 30 },
   ];
 
-  persons.forEach((person) => {
-  // Caso a pessoa NÃO tenha documentos
-  if (person.documents.length === 0) {
-    sheet.addRow({
-      fullName: person.fullName,
-      dateOfBirth: person.dateOfBirth
-        ? new Date(person.dateOfBirth).toISOString().split("T")[0]
-        : "",
-      phone: person.phone ?? "",
-      address: person.address ?? "",
-      postalCode: person.postalCode ?? "",
-      docType: "",
-      docNumber: "",
-      country: "",
-      notes: person.notes ?? "",
-    });
-  }
+  persons.forEach((person: PersonWithDocuments) => {
+    // Caso a pessoa NÃO tenha documentos
+    if (person.documents.length === 0) {
+      sheet.addRow({
+        fullName: person.fullName,
+        dateOfBirth: person.dateOfBirth
+          ? new Date(person.dateOfBirth).toISOString().split("T")[0]
+          : "",
+        phone: person.phone ?? "",
+        address: person.address ?? "",
+        postalCode: person.postalCode ?? "",
+        docType: "",
+        docNumber: "",
+        country: "",
+        notes: person.notes ?? "",
+      });
+    }
 
-  // Caso a pessoa TENHA documentos
-  person.documents.forEach((doc) => {
-    sheet.addRow({
-      fullName: person.fullName,
-      dateOfBirth: person.dateOfBirth
-        ? new Date(person.dateOfBirth).toISOString().split("T")[0]
-        : "",
-      phone: person.phone ?? "",
-      address: person.address ?? "",
-      postalCode: person.postalCode ?? "",
-      docType: doc.type,
-      docNumber: doc.documentNumber,
-      notes: person.notes ?? "",
+    // Caso a pessoa TENHA documentos
+    person.documents.forEach((doc) => {
+      sheet.addRow({
+        fullName: person.fullName,
+        dateOfBirth: person.dateOfBirth
+          ? new Date(person.dateOfBirth).toISOString().split("T")[0]
+          : "",
+        phone: person.phone ?? "",
+        address: person.address ?? "",
+        postalCode: person.postalCode ?? "",
+        docType: doc.type,
+        docNumber: doc.documentNumber,
+        country: "",
+        notes: person.notes ?? "",
+      });
     });
   });
-});
 
   return workbook;
 }

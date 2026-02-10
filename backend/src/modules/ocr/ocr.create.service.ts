@@ -21,7 +21,7 @@ type CreateCitizenCardInput = {
 export async function createFromCitizenCard(
   input: CreateCitizenCardInput
 ) {
-  return prisma.$transaction(async (tx) => {
+  return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     /* =======================
        VERIFICAR DUPLICADO
        ======================= */
