@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import type { ParsedCitizenCard } from "../types/domain";
 import type { OcrConfirmResponse } from "../types/api";
 import { useNotifications } from "../ui/notifications";
-import "../styles/app.css";
+import "../styles/App.css";
 import "../styles/forms.css";
 
 export default function ConfirmData() {
